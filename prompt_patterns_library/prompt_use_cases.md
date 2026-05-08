@@ -1,6 +1,6 @@
 # Prompt Use Cases
 
-## Code Quality (Kod Keyfiyyəti)
+## Code Quality
 ### **Refactoring**
 * **Goal**: Mövcud kodun oxunaqlılığını və performansını artırmaq.
 * **Input**: Python və ya JavaScript dilində yazılmış funksiya.
@@ -11,7 +11,7 @@
 * **Input**: Kod bloku.
 * **Output**: Müəyyən edilmiş stil qaydalarına (məsələn, PEP 8) uyğun yenidən yazılmış kod.
 
-## Debugging (Xətaların Aradan Qaldırılması)
+## Debugging
 ### **Error Identification**
 * **Goal**: Sintaksis və ya işləmə zamanı (runtime) yaranan xətaların kökünü tapmaq.
 * **Input**: Kod parçası və xəta mesajı (stack trace).
@@ -22,7 +22,12 @@
 * **Input**: Xam loq (raw log) faylı.
 * **Output**: Təkrarlanan xətaların və ya performans darboğazlarının xülasəsi.
 
-## Documentation (Sənədləşdirmə)
+### **Code Logic Explanation**
+* **Goal**: Mürəkkəb kod parçalarının necə işlədiyini addım-addım izah etmək.
+* **Input**: Alqoritm və ya mürəkkəb dövr (loop).
+* **Output**: Kodun məntiqinin sadə dildə təsviri.
+
+## Documentation
 ### **Docstring Generation**
 * **Goal**: Funksiya və klaslar üçün aydın sənədləşmə yaratmaq.
 * **Input**: Funksiyanın gövdəsi.
@@ -38,7 +43,7 @@
 * **Input**: Server tərəfindəki marşrut (route) tərifləri.
 * **Output**: Rəsmi API sənədləşməsi (Swagger/OpenAPI stili).
 
-## Testing (Testləşdirmə)
+## Testing
 ### **Unit Test Generation**
 * **Goal**: Kodun fərdi hissələri üçün testlər yaratmaq.
 * **Input**: Funksiya və ya klas tərifi.

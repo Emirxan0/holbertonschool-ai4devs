@@ -1,25 +1,25 @@
 # Structured Bug Reports
 
-## Bug Report 1: bug1.py (Python)
-**Description**: The loop in `bug1.py` attempted to access an index outside the list's range.
-**Root Cause**: The code used `range(len(data) + 1)`, which goes one step beyond the last valid index of the array.
-**Fix**: Changed the range to `len(data)` to stay within valid index boundaries.
-**AI Interaction**: AI identified the off-by-one error and suggested adding a check for empty lists to prevent ZeroDivisionError.
+## Bug Report - bug1.py
+**Summary**: Off-by-one error and incorrect filtering logic in Python.
+**Root Cause**: The loop used `range(len(readings) + 1)` which caused an index out of bounds error, and the filter incorrectly targeted negative values.
+**Resolution**: Updated the range to `len(readings)` and corrected the filter to `readings[i] >= 0`. Added a check for empty lists.
+**Lessons Learned**: Always verify loop boundaries and ensure conditional logic matches the intended business rules.
 
-## Bug Report 2: bug2.js (JavaScript)
-**Description**: The code failed to execute due to critical syntax errors and incorrect variable references.
-**Root Cause**: A missing closing parenthesis in an `if` statement and a typo in the variable name `minLenght` instead of `minLength`.
-**Fix**: Added the missing parenthesis and corrected the variable spelling to match the declaration.
-**AI Interaction**: AI pinpointed the syntax location and highlighted the logic error of using assignment `=` instead of comparison `===`.
+## Bug Report - bug2.js
+**Summary**: Syntax error and incorrect variable referencing in JavaScript.
+**Root Cause**: A missing closing parenthesis in the `if` statement and a typo in the variable name `minLenght`.
+**Resolution**: Fixed the syntax by adding the missing parenthesis and corrected the variable to `minLength`.
+**Lessons Learned**: Use a linter or IDE highlights to catch basic syntax and spelling errors before execution.
 
-## Bug Report 3: bug3.cpp (C++)
-**Description**: The program failed to find the maximum value and caused a runtime crash by accessing forbidden memory.
-**Root Cause**: Initializing `max_val` with an arbitrarily high number and using `i <= n` in the loop condition, leading to an out-of-bounds access.
-**Fix**: Initialized `max_val` with the first element of the array and changed the loop condition to `i < n`.
-**AI Interaction**: AI explained the risks of out-of-bounds access in C++ and suggested safer initialization techniques.
+## Bug Report - bug3.cpp
+**Summary**: Out-of-bounds memory access and incorrect max initialization in C++.
+**Root Cause**: Loop condition `i <= n` accessed memory outside the array, and `max_val` was initialized with a high number.
+**Resolution**: Changed the loop condition to `i < n` and initialized `max_val` with the first element of the array.
+**Lessons Learned**: Be extremely cautious with array indexing in C++ as it does not have built-in bounds checking.
 
-## Bug Report 4: bug4.java (Java)
-**Description**: The inventory alert for empty stock triggered for every single item regardless of the actual stock count.
-**Root Cause**: An accidental semicolon was placed after the `if` condition: `if (stock[i] == 0);`, which nullified the conditional check.
-**Fix**: Removed the semicolon to correctly link the code block to the conditional statement.
-**AI Interaction**: AI detected the "Empty If Statement" pattern and suggested removing the semicolon or using a for-each loop.
+## Bug Report - bug4.java
+**Summary**: Logical nullification due to trailing semicolon in Java.
+**Root Cause**: A semicolon after the `if` condition `if (stock[i] == 0);` made the code block execute unconditionally.
+**Resolution**: Removed the accidental semicolon to correctly link the print statement to the condition.
+**Lessons Learned**: Small syntax characters like semicolons can completely change program logic.

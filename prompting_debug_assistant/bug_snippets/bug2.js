@@ -1,27 +1,15 @@
-/* Bu proqram bir mağazadakı endirimləri hesablamalıdır.
-   Sintaksis və məntiqi səhvləri var.
-*/
-
-function applyDiscount(price, discountRate) {
-    console.log("Hesablanır: " + price + " manat");
-
-    if (discountRate > 100 || discountRate < 0) {
-        // Sintaksis xətası: dırnaq işarəsi yarımçıq qalıb
-        console.log("Xəta: Endirim faizi yanlışdır);
-        return;
+function validateUser(user) {
+    if (user.age < 18 {
+        return false;
     }
 
-    // Məntiqi xəta: Endirimi çıxmaq əvəzinə qiymətə əlavə edir
-    let finalPrice = price + (price * (discountRate / 100));
+    let minLength = 8;
+    if (user.password.length < minLenght) { 
+        return false;
+    }
 
-    // Dəyişən adında xəta (ReferenceError)
-    console.log("Yekun qiymət: " + finalPriceValue); 
-    
-    return finalPrice;
+    if (user.role = "admin") { 
+        return true;
+    }
+    return true;
 }
-
-const originalPrice = 200;
-const rate = 15;
-
-const result = applyDiscount(originalPrice, rate);
-console.log("Nəticə: " + result);

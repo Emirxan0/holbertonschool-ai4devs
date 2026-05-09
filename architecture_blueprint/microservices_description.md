@@ -1,10 +1,10 @@
 # Microservices Architecture
 
-*   **API Gateway**: The single entry point for all client requests, routing them to the appropriate microservices and handling load balancing.
-*   **Auth Service**: Manages user identity, authentication, and authorization independently with its own secure database.
-*   **Itinerary Service**: Handles the core AI logic for generating and managing travel plans and trip suggestions.
-*   **Payment Service**: Processes financial transactions and integrates with external payment providers.
-*   **Collaboration Service**: Manages real-time data synchronization for group planning and multi-user editing.
-*   **Notification Service**: An isolated service responsible for sending push notifications, SMS, and emails based on system events.
-*   **User Service**: Manages detailed user profiles, preferences, and account settings.
-*   **Database per Service**: Each microservice (Auth, Itinerary, Payment, etc.) has its own dedicated database to ensure complete isolation and scalability.
+*   **API Gateway**: Acts as the central entry point for all client requests, managing routing to specific backend services and handling authentication tokens.
+*   **Authentication Service**: Dedicated service for managing user identity, registration, and secure JWT-based login sessions with its own database.
+*   **Itinerary Planning Service**: An AI-powered microservice responsible for processing travel preferences and generating customized trip schedules.
+*   **Payment Service**: Handles all financial interactions, including credit card processing and billing history, isolated from other business logic.
+*   **Collaboration Service**: Manages real-time data synchronization between multiple users during group trip planning sessions.
+*   **Notification Service**: A standalone service that triggers and sends push notifications, emails, and SMS alerts based on system events.
+*   **User Profile Service**: Maintains detailed user metadata, travel preferences, and account settings in a dedicated user database.
+*   **Inventory Service**: Manages real-time availability data for flights and hotels by communicating with external travel partner APIs.

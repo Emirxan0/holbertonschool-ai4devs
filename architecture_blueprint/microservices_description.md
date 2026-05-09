@@ -1,10 +1,10 @@
 # Microservices Architecture
 
-*   **API Gateway**: Acts as the central entry point for all client requests, managing routing to specific backend services and handling authentication tokens.
-*   **Authentication Service**: Dedicated service for managing user identity, registration, and secure JWT-based login sessions with its own database.
-*   **Itinerary Planning Service**: An AI-powered microservice responsible for processing travel preferences and generating customized trip schedules.
-*   **Payment Service**: Handles all financial interactions, including credit card processing and billing history, isolated from other business logic.
-*   **Collaboration Service**: Manages real-time data synchronization between multiple users during group trip planning sessions.
-*   **Notification Service**: A standalone service that triggers and sends push notifications, emails, and SMS alerts based on system events.
-*   **User Profile Service**: Maintains detailed user metadata, travel preferences, and account settings in a dedicated user database.
-*   **Inventory Service**: Manages real-time availability data for flights and hotels by communicating with external travel partner APIs.
+*   **API Gateway**: The central entry point that handles all incoming requests, routing them to the correct microservice and managing global rate limiting.
+*   **Auth Service**: Manages user authentication and authorization using JWT tokens, operating with a dedicated identity database.
+*   **Itinerary Service**: Core AI engine that processes trip requests and generates travel plans, storing results in its own itinerary database.
+*   **Payment Service**: An isolated service that processes payments and manages transaction logs, ensuring high security for financial data.
+*   **Group Collaboration Service**: Enables real-time, multi-user editing of travel plans using WebSockets to synchronize changes across group members.
+*   **Notification Service**: Handles the asynchronous delivery of push notifications, SMS, and emails triggered by trip updates or booking status.
+*   **User Profile Service**: Manages sensitive user metadata, travel preferences, and account settings in a strictly isolated user database.
+*   **Inventory Service**: Communicates with external travel provider APIs (GDS) to fetch and cache real-time availability for flights and hotels.

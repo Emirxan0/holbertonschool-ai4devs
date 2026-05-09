@@ -1,0 +1,11 @@
+graph TD
+    A[API Gateway] --> B[Auth Service]
+    A --> C[Itinerary Service]
+    A --> D[Payment Service]
+    A --> E[Collaboration Service]
+    A --> F[Notification Service]
+    A --> G[User Service]
+    B --> H[(Auth DB)]
+    C --> I[(Itinerary DB)]
+    D --> J[(Payment DB)]
+    E --> K[(Collab DB)]

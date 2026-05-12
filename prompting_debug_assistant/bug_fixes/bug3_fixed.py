@@ -18,3 +18,9 @@ if __name__ == "__main__":
     assert average_adult_age("18, 18, 18") == 18.0
     print("All tests passed!")
     print(average_adult_age(sample))
+
+# Additional test cases
+assert average_adult_age("18") == 18.0
+assert average_adult_age("0, 1, 2") == 0.0
+assert average_adult_age("20, 25, 30") == 25.0
+print("Extended tests passed!")

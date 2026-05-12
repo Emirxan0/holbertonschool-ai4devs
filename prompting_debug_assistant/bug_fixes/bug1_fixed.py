@@ -18,3 +18,9 @@ if __name__ == "__main__":
     print("All tests passed!")
     print(last_n_items(data, 2))
     print(last_n_items(data, 5))
+
+# Additional test cases
+assert last_n_items([1, 2, 3], 3) == [1, 2, 3]
+assert last_n_items([1, 2, 3], 1) == [3]
+assert last_n_items([], 0) == []
+print("Extended tests passed!")

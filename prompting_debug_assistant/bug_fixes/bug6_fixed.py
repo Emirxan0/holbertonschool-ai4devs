@@ -18,3 +18,9 @@ if __name__ == "__main__":
         assert fib(i) == expected[i], f"fib({i}) failed"
         print(f"fib({i}) = {fib(i)} ✅")
     print("All tests passed!")
+
+# Additional test cases
+assert fib(8) == 21
+assert fib(9) == 34
+assert fib(10) == 55
+print("Extended tests passed!")

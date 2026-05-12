@@ -1,12 +1,14 @@
 /*
  * Bug 4 - bug4.c
  * Intended Behavior: Reverse a C string in-place using two pointers
- *                    starting from both ends and swapping characters
- *                    until the pointers meet in the middle.
- *                    Should handle empty strings without crashing.
- * Issue Type: Off-by-one error + undefined behaviour on empty string.
- * Notes: strlen() returns size_t (unsigned). For empty string,
- *        strlen(str) - 1 wraps to SIZE_MAX causing crash or infinite loop.
+ *                    starting from both ends, swapping characters until
+ *                    the pointers meet in the middle. The function must
+ *                    handle empty strings gracefully without crashing
+ *                    or entering an infinite loop.
+ * Issue Type: Off-by-one error and undefined behaviour on empty string.
+ * Notes: strlen() returns size_t which is unsigned. For an empty string,
+ *        strlen(str) minus 1 wraps to SIZE_MAX due to unsigned underflow.
+ *        This causes out-of-bounds writes, a segfault, or infinite loop.
  */
 
 #include <stdio.h>

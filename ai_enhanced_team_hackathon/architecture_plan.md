@@ -5,14 +5,20 @@ The AI Code Snippet Manager is a full-stack web application with a React fronten
 
 ## High-Level Architecture Diagram
 
-```mermaid
-graph TD
-    User((Developer)) -->|Interacts| Frontend[React + Tailwind CSS]
-    Frontend -->|REST API Requests| Backend[Node.js + Express]
-    Backend -->|Queries| DB[(PostgreSQL)]
-    Backend -->|Prompt/Response| AI[OpenAI API]
-    Frontend -->|Syntax Highlighting| Lib[Prism.js]
-```
+    +------------------+       REST API        +------------------+
+    |                  | --------------------> |                  |
+    |  React Frontend  |                       | Node.js + Express|
+    |  (Vite + Tailwind| <-------------------- |    Backend       |
+    |   + Prism.js)    |       JSON            |                  |
+    +------------------+                       +------------------+
+                                                       |
+                                      +----------------+----------------+
+                                      |                                 |
+                                      v                                 v
+                             +------------------+             +------------------+
+                             |   PostgreSQL DB  |             |   OpenAI API     |
+                             |   (Supabase)     |             |   (GPT-4o)       |
+                             +------------------+             +------------------+
 
 ## Component Breakdown
 
@@ -50,14 +56,14 @@ graph TD
 
 ## Technology Stack
 
-| Layer      | Technology           | Purpose                            |
-|------------|----------------------|------------------------------------|
-| Frontend   | React 18 + Vite      | UI framework and build tool        |
-| Styling    | Tailwind CSS         | Utility-first CSS framework        |
-| Highlighting | Prism.js           | Syntax highlighting for code view  |
-| Backend    | Node.js + Express    | REST API server                    |
-| ORM        | Prisma               | Database schema and query manager  |
-| Database   | PostgreSQL (Supabase)| Persistent data storage            |
-| AI         | OpenAI API (GPT-4o)  | Tag suggestion and code explanation|
-| Deployment | Vercel + Render      | Frontend and backend hosting       |
-| Testing    | Jest + Playwright    | Unit and end-to-end testing        |
+| Layer        | Technology            | Purpose                             |
+|--------------|-----------------------|-------------------------------------|
+| Frontend     | React 18 + Vite       | UI framework and build tool         |
+| Styling      | Tailwind CSS          | Utility-first CSS framework         |
+| Highlighting | Prism.js              | Syntax highlighting for code view   |
+| Backend      | Node.js + Express     | REST API server                     |
+| ORM          | Prisma                | Database schema and query manager   |
+| Database     | PostgreSQL (Supabase) | Persistent data storage             |
+| AI           | OpenAI API (GPT-4o)   | Tag suggestion and code explanation |
+| Deployment   | Vercel + Render       | Frontend and backend hosting        |
+| Testing      | Jest + Playwright     | Unit and end-to-end testing         |

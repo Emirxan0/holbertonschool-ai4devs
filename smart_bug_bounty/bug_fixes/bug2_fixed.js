@@ -5,6 +5,7 @@ async function getUserData() {
         console.log("User Name: " + user.name);
         return user;
     } catch (error) {
-        console.error("Error fetching user data:", error);
+        console.error(error);
     }
 }
+getUserData();

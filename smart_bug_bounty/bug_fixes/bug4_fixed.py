@@ -1,6 +1,8 @@
 def is_palindrome(s):
     normalized = "".join(s.split()).lower()
-    return normalized == normalized[::-1]
-
-if __name__ == "__main__":
-    print(is_palindrome("Racecar"))
+    reversed_s = normalized[::-1]
+    if normalized == reversed_s:
+        return True
+    else:
+        return False
+print(is_palindrome("Racecar"))

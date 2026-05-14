@@ -1,8 +1,12 @@
 def calculate_average(numbers):
     if not numbers:
         return 0
-    return sum(numbers) / len(numbers)
+    total_sum = sum(numbers)
+    return total_sum / len(numbers)
 
-if __name__ == "__main__":
-    print(calculate_average([]))
-    print(calculate_average([10, 20, 30, 40, 50]))
+data_empty = []
+data_with_values = [10, 20, 30, 40, 50]
+data_with_one = [100]
+print(f"Boş liste ortalaması: {calculate_average(data_empty)}")
+print(f"Dolu liste ortalaması: {calculate_average(data_with_values)}")
+print(f"Tek elemanlı liste ortalaması: {calculate_average(data_with_one)}")

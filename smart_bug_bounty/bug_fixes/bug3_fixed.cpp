@@ -1,7 +1,5 @@
 #include <iostream>
 #include <string>
-#include <algorithm>
-
 void reverseString(std::string& s) {
     int n = s.length();
     for (int i = 0; i < n / 2; i++) {
@@ -10,7 +8,6 @@ void reverseString(std::string& s) {
         s[n - 1 - i] = temp;
     }
 }
-
 int main() {
     std::string str = "Hello";
     reverseString(str);

@@ -1,58 +1,54 @@
 import json
 
-class LogAnalyzer:
-    def parse_line(self, line: str) -> dict:
-        """Apache log sətrini parse edir. Xarab sətirlər üçün None qaytarır."""
-        try:
-            parts = line.split()
-            if len(parts) < 9:
-                return None
-            
-            # Status kodu adətən 9-cu elementdir (index 8)
-            return {
-                "ip": parts[0],
-                "status": int(parts[8])
-            }
-        except (ValueError, IndexError):
-            return None
+class RecommendationEngine:
+    def __init__(self, user_db: dict, product_metadata: list):
+        self.user_db = user_db
+        self.product_metadata = {p["id"]: p for p in product_metadata}
 
-    def analyze(self, lines: list) -> dict:
-        """Log siyahısını analiz edir və statistikaları JSON formatında qaytarır."""
-        total_requests = 0
-        errors = 0
-        unique_visitors = set()
+    def _calculate_similarity(self, user_history_1: list, user_history_2: list) -> float:
+        set1, set2 = set(user_history_1), set(user_history_2)
+        if not set1 or not set2:
+            return 0.0
+        intersection = set1.intersection(set2)
+        union = set1.union(set2)
+        return len(intersection) / len(union)
 
-        for line in lines:
-            line = line.strip()
-            if not line:
+    def get_recommendations(self, target_user_id: str, top_n: int = 5) -> str:
+        if not self.product_metadata:
+            return json.dumps({"recommendations": [], "status": "No products available"})
+
+        if not target_user_id or not isinstance(target_user_id, str):
+            return json.dumps({"error": "Invalid User ID format"})
+
+        if target_user_id not in self.user_db or not self.user_db[target_user_id]:
+            trending = [pid for pid, p in self.product_metadata.items() if p.get("stock", 0) > 0][:top_n]
+            return json.dumps({
+                "recommendations": [{"product_id": pid, "score": 0.5} for pid in trending],
+                "status": "Cold start fallback triggered"
+            })
+
+        target_history = set(self.user_db[target_user_id])
+        candidate_scores = {}
+
+        for other_user, other_history in self.user_db.items():
+            if other_user == target_user_id:
                 continue
-                
-            data = self.parse_line(line)
-            if data:
-                total_requests += 1
-                unique_visitors.add(data["ip"])
-                if data["status"] >= 400:
-                    errors += 1
+            
+            sim = self._calculate_similarity(list(target_history), other_history)
+            if sim <= 0:
+                continue
+
+            for prod_id in other_history:
+                if prod_id not in target_history:
+                    if self.product_metadata.get(prod_id, {}).get("stock", 0) <= 0:
+                        continue
+                    candidate_scores[prod_id] = candidate_scores.get(prod_id, 0) + sim
+
+        sorted_candidates = sorted(candidate_scores.items(), key=lambda x: x[1], reverse=True)[:top_n]
         
-        # Division by zero-nun qarşısını almaq (Edge Case)
-        error_rate = 0.0
-        if total_requests > 0:
-            error_rate = (errors / total_requests) * 100
+        recommendations = []
+        for pid, score in sorted_candidates:
+            normalized_score = min(round(score, 2), 1.0)
+            recommendations.append({"product_id": pid, "score": normalized_score})
 
-        return {
-            "total_requests": total_requests,
-            "unique_visitors": len(unique_visitors),
-            "error_rate": f"{error_rate:.1f}%",
-            "status": "success"
-        }
-
-if __name__ == "__main__":
-    # Sadə test nümunəsi
-    analyzer = LogAnalyzer()
-    sample_logs = [
-        '192.168.1.1 - - [08/May/2026:10:00:01] "GET /home" 200 512',
-        '192.168.1.2 - - [08/May/2026:10:00:02] "POST /login" 404 256',
-        'invalid log line example',
-        '192.168.1.1 - - [08/May/2026:10:00:03] "GET /api" 500 128'
-    ]
-    print(json.dumps(analyzer.analyze(sample_logs), indent=4))
+        return json.dumps({"recommendations": recommendations, "status": "success"})

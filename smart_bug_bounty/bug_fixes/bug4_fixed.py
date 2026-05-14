@@ -1,11 +1,6 @@
 def is_palindrome(s):
-    # Bug: Only reverses up to the second to last character
-    reversed_s = s[::-2] 
-    
-    # Bug: Doesn't normalize string (case/spaces)
-    if s == reversed_s:
-        return True
-    else:
-        return False
+    normalized = "".join(s.split()).lower()
+    return normalized == normalized[::-1]
 
-print(is_palindrome("Racecar")) # Should be True but returns False
+if __name__ == "__main__":
+    print(is_palindrome("Racecar"))

@@ -1,14 +1,13 @@
 #include <iostream>
 #include <string>
+#include <algorithm>
 
 void reverseString(std::string& s) {
     int n = s.length();
-    // Bug: i <= n causes out-of-bounds access (s[n] is null terminator)
-    // Bug: Swapping until n means it reverses back to original
-    for (int i = 0; i <= n; i++) {
+    for (int i = 0; i < n / 2; i++) {
         char temp = s[i];
-        s[i] = s[n - i];
-        s[n - i] = temp;
+        s[i] = s[n - 1 - i];
+        s[n - 1 - i] = temp;
     }
 }
 

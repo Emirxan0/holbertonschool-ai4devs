@@ -3,22 +3,16 @@
 ## Overview
 The Smart Task Manager follows a client-server architecture with a React frontend, a FastAPI backend, and a SQLite database for the MVP phase.
 
-## High-Level Architecture Diagram
+## High-Level Diagram
 
-    +-------------------+        HTTP/REST        +-------------------+
-    |                   | ----------------------> |                   |
-    |   React Frontend  |                         |  FastAPI Backend  |
-    |   (Vite + Tailwind|  <----------------------|  (Python 3.11)   |
-    |    CSS)           |        JSON             |                   |
-    +-------------------+                         +-------------------+
-            |                                               |
-            | localStorage                                  | SQLAlchemy ORM
-            | (session cache)                               |
-            v                                               v
-    +-------------------+                         +-------------------+
-    |   Browser Cache   |                         |  SQLite Database  |
-    |   (task drafts)   |                         |  (tasks.db)       |
-    +-------------------+                         +-------------------+
+```mermaid
+graph TD
+    User((User)) -->|Interacts| Frontend[React + Tailwind CSS]
+    Frontend -->|API Requests| Backend[FastAPI + Python]
+    Backend -->|Queries| DB[(SQLite / PostgreSQL)]
+    Backend -->|Priority Logic| AI[Rule-Based AI Engine]
+    Frontend -->|Caches| Cache[localStorage]
+```
 
 ## Component Breakdown
 

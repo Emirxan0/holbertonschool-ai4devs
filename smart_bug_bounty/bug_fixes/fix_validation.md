@@ -1,31 +1,21 @@
 # Fix Validation Report
 
 ## bug1_fixed.py
-- Original Issue: Off-by-one error in list indexing and slicing
-- Fix Applied: Corrected index to len(items)-1, range to range(len(items)), slice to items[0:len(items)]
+- Original Issue: Missing empty list check causes ZeroDivisionError; sum started from wrong index
+- Fix Applied: Added empty list check returning 0; used built-in sum() function
 - Test Results: All 3 test cases passed
-
-## bug2_fixed.py
-- Original Issue: None reference error, calling .strip() on None causes AttributeError
-- Fix Applied: Added None check before accessing string methods, used dict.get() with default
-- Test Results: All 4 test cases passed
 
 ## bug2_fixed.js
-- Original Issue: Undefined variable access without null check
-- Fix Applied: Added null/undefined check before property access
-- Test Results: All 3 test cases passed
-
-## bug3_fixed.py
-- Original Issue: Logic error, wrong boolean operator or instead of and
-- Fix Applied: Replaced or with and so both conditions must be satisfied
+- Original Issue: fetch is async but code runs synchronously, user object is empty when accessed
+- Fix Applied: Converted function to async/await so fetch completes before accessing data
 - Test Results: All 3 test cases passed
 
 ## bug3_fixed.cpp
-- Original Issue: Memory leak and null pointer dereference
-- Fix Applied: Added null pointer check and proper memory deallocation
+- Original Issue: Loop condition i <= n causes out-of-bounds access; swapping until n reverses back to original
+- Fix Applied: Changed loop to i < n/2 and index to n-1-i to correctly reverse string once
 - Test Results: All 3 test cases passed
 
 ## bug4_fixed.py
-- Original Issue: Division by zero error without input validation
-- Fix Applied: Added zero check before division operation
+- Original Issue: Slice [::-2] skips every other character; no string normalization for case or spaces
+- Fix Applied: Changed to [::-1] for full reversal; added .lower() and .replace() for normalization
 - Test Results: All 3 test cases passed

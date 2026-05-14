@@ -1,12 +1,14 @@
-function getUserData() {
-let user = {};// Bug: fetch is async, but code proceeds synchronously
-fetch('https://api.example.com/user/1')
-.then(response => response.json())
-.then(data => {
-user = data;
-console.log("User Name: " + user.name);
-});
-// Bug: user will be empty {} here because fetch hasn't finished
-return user;
+// Fix: Use async/await so fetch completes before accessing user data
+async function getUserData() {
+    let user = {};
+
+    // Fix: await the fetch so data is available before proceeding
+    const response = await fetch('https://api.example.com/user/1');
+    const data = await response.json();
+    user = data;
+
+    // Now user.name is available
+    console.log("User Name: " + user.name);
+    return user;
 }
 getUserData();

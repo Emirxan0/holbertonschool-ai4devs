@@ -1,9 +1,15 @@
 def is_palindrome(s):
-# Bug: Only reverses up to the second to last character
-    s = s.lower().replace(" ", "")
-    reversed_s = s[::-1]# Bug: Doesn't normalize string (case/spaces)
-    if s == reversed_s:
+    # Fix: Normalize string - lowercase and remove spaces
+    normalized = s.lower().replace(" ", "")
+
+    # Fix: Reverse entire string with [::-1] not [::-2]
+    reversed_s = normalized[::-1]
+
+    if normalized == reversed_s:
         return True
     else:
         return False
-print(is_palindrome("Racecar")) # Should be True but returns False
+
+print(is_palindrome("Racecar"))  # Expected: True
+print(is_palindrome("hello"))    # Expected: False
+print(is_palindrome("A man a plan a canal Panama"))  # Expected: True

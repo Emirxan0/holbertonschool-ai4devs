@@ -1,7 +1,7 @@
 def is_palindrome(s):
-    normalized = "".join(s.split()).lower()
-    reversed_s = normalized[::-1]
-    if normalized == reversed_s:
+    s = s.lower().replace(" ", "")
+    reversed_s = s[::-1]
+    if s == reversed_s:
         return True
     else:
         return False
